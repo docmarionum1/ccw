@@ -1,3 +1,4 @@
+#python floorh.py /scratch/share/pvarsh/lidar/rasters/empire_state_5000/raster.npy /scratch/share/pvarsh/lidar/rasters/empire_state_bbl_5000/raster.npy
 import sys
 from os import path
 import numpy as np
