@@ -19,17 +19,16 @@ if not path.isfile(step1):
                 bbl = braster[i][j]
                 if bbl not in bblheights:
                     bblheights[bbl] = []
-                bblheights[bbl].append(hraster[i][j])
+                if not np.isnan(hraster[i][j]):
+                    bblheights[bbl].append(hraster[i][j])
 
     np.save(step1, bblheights)
 else:
     bblheights = np.load(step1).item()
 
-print len(bblheights)
-exit()
-
 # Step 2 - calculate the "height" of each bbl
-for bbl, heights in bblheights:
+for bbl in bblheights:
+    heights = bblheights[bbl]
     heights = np.array(heights)
     heights = heights[heights>=heights.mean()]
-    print bbl, heights.mean()
+    print bbl,np.percentile(heights, 75)
