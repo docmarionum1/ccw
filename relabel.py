@@ -38,7 +38,7 @@ for record in records:
                 if str(id) in bbls:
                     print "Warning, multiple hits on", id
                 else:
-                    bbl[str(id)] = [int(record[BLOCK]), int(record[LOT])]
+                    bbls[str(id)] = [int(record[BLOCK]), int(record[LOT])]
             else:
                 print "Warning, x/y missed for", record[BLOCK], record[LOT]
 
