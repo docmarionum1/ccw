@@ -1,0 +1,41 @@
+
+>>> r = np.load("/scratch/share/pvarsh/lidar/rasters/empire_state_bbl_5000/raste                                                                                                                                                             r.npy")
+>>> r
+array([[     0,      0,      0, ..., 387428, 387428, 387428],
+       [     0,      0,      0, ..., 387428, 387428, 387428],
+       [     0,      0,      0, ..., 387428, 387428, 387428],
+       ...,
+       [     0,      0,      0, ...,      0,      0,      0],
+       [     0,      0,      0, ...,      0,      0,      0],
+       [     0,      0,      0, ...,      0,      0,      0]], dtype=uint32)
+>>> r[2500][2500]
+389752
+>>> r2 = r.copy()
+>>> r2[r2 != 389752] = 0
+>>> r2
+array([[0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       ...,
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0]], dtype=uint32)
+>>> im = Image.fromarray(r2)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/rh/anaconda/root/lib/python2.7/site-packages/PIL/Image.py", line 18                                                                                                                                                             86, in fromarray
+    raise TypeError("Cannot handle this data type")
+TypeError: Cannot handle this data type
+>>> r2 = r2 % 255
+>>> r2.max()
+112
+>>> im = Image.fromarray(r2)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/opt/rh/anaconda/root/lib/python2.7/site-packages/PIL/Image.py", line 18                                                                                                                                                             86, in fromarray
+    raise TypeError("Cannot handle this data type")
+TypeError: Cannot handle this data type
+>>> r2 = np.uint8(r2)
+>>> im = Image.fromarray(r2)
+>>> im.save('ahhh.jpg')
+>>>
