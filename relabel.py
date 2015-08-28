@@ -9,6 +9,7 @@ Y = 73
 BOROUGH = 0
 BLOCK = 1
 LOT = 2
+FLOORS = 42
 FPM = .3048
 
 boroughs = ['MN']
@@ -38,7 +39,7 @@ for record in records:
                 if str(id) in bbls:
                     print "Warning, multiple hits on", id
                 else:
-                    bbls[str(id)] = [int(record[BLOCK]), int(record[LOT])]
+                    bbls[str(id)] = [int(record[BLOCK]), int(record[LOT]), int(float(record[FLOORS]))]
             else:
                 print "Warning, x/y missed for", record[BLOCK], record[LOT]
 
